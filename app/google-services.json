@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "563173646021",
+    "project_id": "snaptex-32763",
+    "storage_bucket": "snaptex-32763.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563173646021:android:3a60ae905e7ca102ea5aac",
+        "android_client_info": {
+          "package_name": "com.example.snaptex"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB8N7zJzHN7mQxYhhh27jvKYZtkw72Yo8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
