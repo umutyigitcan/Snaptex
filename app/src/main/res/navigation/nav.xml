@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav"
-    app:startDestination="@id/homePage">
+    app:startDestination="@id/testFragment">
 
     <fragment
         android:id="@+id/firstPage"
@@ -11,8 +11,11 @@
         android:label="fragment_first_page"
         tools:layout="@layout/fragment_first_page" >
         <action
-            android:id="@+id/action_firstPage_to_secondPage"
-            app:destination="@id/secondPage" />
+            android:id="@+id/action_firstPage_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_firstPage_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
     <fragment
         android:id="@+id/secondPage"
@@ -27,5 +30,28 @@
         android:id="@+id/homePage"
         android:name="com.example.snaptex.homePage"
         android:label="fragment_home_page"
-        tools:layout="@layout/fragment_home_page" />
+        tools:layout="@layout/fragment_home_page" >
+        <action
+            android:id="@+id/action_homePage_to_chatPage"
+            app:destination="@id/chatPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/chatPage"
+        android:name="com.example.snaptex.chatPage"
+        android:label="fragment_chat_page"
+        tools:layout="@layout/fragment_chat_page" />
+    <fragment
+        android:id="@+id/testFragment"
+        android:name="com.example.snaptex.testFragment"
+        android:label="fragment_test"
+        tools:layout="@layout/fragment_test" />
+    <fragment
+        android:id="@+id/registerFragment"
+        android:name="com.example.snaptex.RegisterFragment"
+        android:label="fragment_register"
+        tools:layout="@layout/fragment_register" >
+        <action
+            android:id="@+id/action_registerFragment_to_secondPage"
+            app:destination="@id/secondPage" />
+    </fragment>
 </navigation>
