@@ -24,6 +24,12 @@ class SecondPage : Fragment() {
             var getData=RegisterDatabaseDao().getData(vt)
             for(k in getData){
                 var userInfo=UsersData(k.username,k.mail,k.password,k.img)
+                var userFriends=k.username+"Friends"
+                var userFriendsRequest=k.username+"FriendsRequest"
+                var userFriendsdb=database.getReference(userFriends)
+                var userFriendsRequestdb=database.getReference(userFriendsRequest)
+                userFriendsdb.push().setValue("deneme")
+                userFriendsRequestdb.push().setValue("deneme2")
                 user.push().setValue(userInfo)
             }
 

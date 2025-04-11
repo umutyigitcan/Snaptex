@@ -14,7 +14,7 @@
             android:id="@+id/action_firstPage_to_registerFragment"
             app:destination="@id/registerFragment" />
         <action
-            android:id="@+id/action_firstPage_to_homePage"
+            android:id="@+id/d"
             app:destination="@id/homePage" />
     </fragment>
     <fragment
@@ -35,6 +35,7 @@
             android:id="@+id/action_homePage_to_chatPage"
             app:destination="@id/chatPage" />
     </fragment>
+
     <fragment
         android:id="@+id/chatPage"
         android:name="com.example.snaptex.chatPage"

@@ -45,7 +45,10 @@ class FirstPage : Fragment() {
                         val userInfo = p.getValue(UsersData::class.java)
                         if (userInfo != null && userInfo.mail == email && userInfo.password == password) {
                             userFound = true
-                            findNavController().navigate(R.id.action_firstPage_to_homePage)
+                            var vt=SavedUserDatabaseManager(requireContext())
+                            SavedUserDatabaseDao().userChange(vt,userInfo.username.toString(),userInfo.mail.toString(),userInfo.password.toString())
+                            SavedUserDatabaseDao().userImgChange(vt,userInfo.img!!)
+                            findNavController().navigate(R.id.d)
                             break
                         }
                     }
