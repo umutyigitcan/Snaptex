@@ -2,6 +2,7 @@ package com.example.snaptex
 
 import AddPersonPage
 import android.os.Bundle
+import android.provider.ContactsContract.Groups
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -23,9 +24,13 @@ class homePage : Fragment() {
         fragmentTitleList=ArrayList()
         fragmentList=ArrayList()
         fragmentList.add(PersonsPage())
-        fragmentList.add(AddPersonPage())
+        fragmentList.add(GroupsFragment())
         fragmentTitleList.add("Persons")
-        fragmentTitleList.add("Add Person")
+        fragmentTitleList.add("Groups")
+
+        binding.addFriend.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homePage_to_addPersonPage)
+        }
 
         val adapter=myViewPagerAdapter(requireActivity())
         binding.vp.adapter=adapter

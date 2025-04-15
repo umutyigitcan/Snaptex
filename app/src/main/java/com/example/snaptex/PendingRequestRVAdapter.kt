@@ -7,16 +7,18 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.FirebaseDatabase
 
 class PendingRequestRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterData>):RecyclerView.Adapter<PendingRequestRVAdapter.myCardViewHolder>() {
     inner class myCardViewHolder(view:View):RecyclerView.ViewHolder(view){
         var userimg: ImageView
         var username: TextView
-        var sendMessage: TextView
+        var acceptRequest: TextView
         init {
             userimg=view.findViewById(R.id.userimg)
             username=view.findViewById(R.id.username)
-            sendMessage=view.findViewById(R.id.sendMessage)
+            acceptRequest=view.findViewById(R.id.sendMessage)
         }
     }
 
@@ -27,6 +29,21 @@ class PendingRequestRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapt
     override fun onBindViewHolder(holder: myCardViewHolder, position: Int) {
         var myHolder=getData[position]
         holder.username.text=myHolder.username
+
+        holder.acceptRequest.setOnClickListener {
+            var database=FirebaseDatabase.getInstance()
+            var vt=SavedUserDatabaseManager(mContext)
+            var getLoginUser=SavedUserDatabaseDao().getData(vt)
+            for(k in getLoginUser){
+             var userLogin=k.username+"Friends"
+             var saveFriends=database.getReference(userLogin)
+             saveFriends.push().setValue(UsersData(myHolder.username,myHolder.mail,myHolder.password,myHolder.img))
+                var selectedUser=myHolder.username+"Friends"
+                var selectedUserdb=database.getReference(selectedUser)
+                selectedUserdb.push().setValue(UsersData(k.username,k.mail,k.password,k.img))
+            }
+
+        }
 
     }
 

@@ -28,7 +28,7 @@ class SecondPage : Fragment() {
                 var userFriendsRequest=k.username+"FriendsRequest"
                 var userFriendsdb=database.getReference(userFriends)
                 var userFriendsRequestdb=database.getReference(userFriendsRequest)
-                userFriendsdb.push().setValue("deneme")
+
 
                 var vt2=SavedUserDatabaseManager(requireContext())
                 SavedUserDatabaseDao().userImgChange(vt2,1)

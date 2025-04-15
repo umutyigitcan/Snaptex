@@ -26,9 +26,19 @@
         app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/request"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addFriend"
         android:layout_marginEnd="20dp"
         android:id="@+id/pendingRequest"/>
+
+    <Button
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/newuser"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/addFriend"/>
 
 
     <View
