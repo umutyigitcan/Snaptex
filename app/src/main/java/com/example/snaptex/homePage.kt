@@ -33,6 +33,10 @@ class homePage : Fragment() {
             tab.setText(fragmentTitleList[position])
         }.attach()
 
+        binding.pendingRequest.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homePage_to_pendingRequest2)
+        }
+
         return binding.root
     }
 

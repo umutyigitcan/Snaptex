@@ -29,7 +29,10 @@ class SecondPage : Fragment() {
                 var userFriendsdb=database.getReference(userFriends)
                 var userFriendsRequestdb=database.getReference(userFriendsRequest)
                 userFriendsdb.push().setValue("deneme")
-                userFriendsRequestdb.push().setValue("deneme2")
+
+                var vt2=SavedUserDatabaseManager(requireContext())
+                SavedUserDatabaseDao().userImgChange(vt2,1)
+                SavedUserDatabaseDao().userChange(vt2,k.username,k.mail,k.password)
                 user.push().setValue(userInfo)
             }
 

@@ -42,7 +42,7 @@ class UsersRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterData>):
             var vt=SavedUserDatabaseManager(mContext)
             var getLoginUser=SavedUserDatabaseDao().getData(vt)
             for(k in getLoginUser){
-                sendedReuquestdb.push().setValue(k.username)
+                sendedReuquestdb.push().setValue(UsersData(k.username,k.mail,k.password,k.img))
             }
 
 

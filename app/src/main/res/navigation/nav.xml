@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homePage_to_chatPage"
             app:destination="@id/chatPage" />
+        <action
+            android:id="@+id/action_homePage_to_pendingRequest2"
+            app:destination="@id/pendingRequest2" />
     </fragment>
 
     <fragment
@@ -55,4 +58,9 @@
             android:id="@+id/action_registerFragment_to_secondPage"
             app:destination="@id/secondPage" />
     </fragment>
+    <fragment
+        android:id="@+id/pendingRequest2"
+        android:name="com.example.snaptex.PendingRequest"
+        android:label="fragment_pending_request"
+        tools:layout="@layout/fragment_pending_request" />
 </navigation>
