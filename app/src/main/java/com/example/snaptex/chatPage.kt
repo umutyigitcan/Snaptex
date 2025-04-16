@@ -59,7 +59,8 @@ class chatPage : Fragment() {
                             dataList.add(SendedMessageData(userlist.username,userlist.mail,userlist.password,userlist.img,userlist.message))
 
                             adapter.notifyDataSetChanged()
-                        }Connected Firebase and displayed chat conversations in RecyclerView
+                        }
+
                     }
                 }
 
