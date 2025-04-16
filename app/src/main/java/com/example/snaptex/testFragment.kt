@@ -14,6 +14,14 @@ class testFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,savedInstanceState: Bundle?): View? {
         binding= FragmentTestBinding.inflate(inflater,container,false)
 
+        val userA = "b121"
+        val userB = "b120"
+
+        val chatId = listOf(userA, userB).sorted().joinToString("_")
+
+        binding.tv.text=chatId
+
+
 
         return binding.root
     }

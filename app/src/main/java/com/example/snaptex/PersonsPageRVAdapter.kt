@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.FirebaseDatabase
 
 class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterData>):RecyclerView.Adapter<PersonsPageRVAdapter.myCardViewHolder>() {
 
@@ -34,6 +36,21 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
     override fun onBindViewHolder(holder: myCardViewHolder, position: Int) {
         var myHolder=getData[position]
         holder.Username.text=myHolder.username
+
+        holder.sendMessage.setOnClickListener {
+
+            var vt=SelectedUserChatSQLite(mContext)
+            var getLoginUser=SelectedUserChatDao().getData(vt)
+            for(k in getLoginUser){
+                var userLogin=k.getLoginUser
+                var selectedUser=myHolder.username
+                var vt2=SelectedUserChatSQLite(mContext)
+                SelectedUserChatDao().changeData(vt2,userLogin,selectedUser)
+            }
+
+            Navigation.findNavController(it).navigate(R.id.action_homePage_to_chatPage)
+        }
+
 
     }
 

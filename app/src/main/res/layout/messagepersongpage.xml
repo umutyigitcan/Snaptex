@@ -33,7 +33,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Mesaj GÖndermek İçin Tıklayınız"
+        android:text="Mesaj Göndermek İçin Tıklayınız"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="#223a4c"
