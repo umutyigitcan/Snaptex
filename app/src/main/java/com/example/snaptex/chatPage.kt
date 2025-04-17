@@ -59,6 +59,7 @@ class chatPage : Fragment() {
                             dataList.add(SendedMessageData(userlist.username,userlist.mail,userlist.password,userlist.img,userlist.message))
 
                             adapter.notifyDataSetChanged()
+                            binding.rv.scrollToPosition(dataList.size-1)
                         }
 
                     }
@@ -84,6 +85,7 @@ class chatPage : Fragment() {
                                 dataList.add(SendedMessageData(userlist.username,userlist.mail,userlist.password,userlist.img,userlist.message))
 
                                 adapter.notifyDataSetChanged()
+                                binding.rv.scrollToPosition(dataList.size-1)
                             }
                         }
                     }

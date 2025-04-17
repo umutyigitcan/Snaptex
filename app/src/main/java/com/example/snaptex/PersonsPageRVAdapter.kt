@@ -35,7 +35,7 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
 
     override fun onBindViewHolder(holder: myCardViewHolder, position: Int) {
         var myHolder=getData[position]
-        holder.Username.text=myHolder.username
+        holder.Username.text=myHolder.mail
 
         holder.sendMessage.setOnClickListener {
 
@@ -43,7 +43,7 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
             var getLoginUser=SelectedUserChatDao().getData(vt)
             for(k in getLoginUser){
                 var userLogin=k.getLoginUser
-                var selectedUser=myHolder.username
+                var selectedUser=myHolder.mail
                 var vt2=SelectedUserChatSQLite(mContext)
                 SelectedUserChatDao().changeData(vt2,userLogin,selectedUser)
             }

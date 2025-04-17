@@ -35,6 +35,7 @@ class PersonsPage : Fragment() {
             var list=database.getReference(k.username+"Friends")
             list.addValueEventListener(object:ValueEventListener{
                 override fun onDataChange(ds: DataSnapshot) {
+                    dataList.clear()
                     for(k in ds.children){
                         var users=k.getValue(UsersData::class.java)
                         if(users!=null){

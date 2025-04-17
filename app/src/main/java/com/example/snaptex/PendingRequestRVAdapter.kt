@@ -8,7 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class PendingRequestRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterData>):RecyclerView.Adapter<PendingRequestRVAdapter.myCardViewHolder>() {
     inner class myCardViewHolder(view:View):RecyclerView.ViewHolder(view){
@@ -31,19 +34,63 @@ class PendingRequestRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapt
         holder.username.text=myHolder.username
 
         holder.acceptRequest.setOnClickListener {
-            var database=FirebaseDatabase.getInstance()
-            var vt=SavedUserDatabaseManager(mContext)
-            var getLoginUser=SavedUserDatabaseDao().getData(vt)
-            for(k in getLoginUser){
-             var userLogin=k.username+"Friends"
-             var saveFriends=database.getReference(userLogin)
-             saveFriends.push().setValue(UsersData(myHolder.username,myHolder.mail,myHolder.password,myHolder.img))
-                var selectedUser=myHolder.username+"Friends"
-                var selectedUserdb=database.getReference(selectedUser)
-                selectedUserdb.push().setValue(UsersData(k.username,k.mail,k.password,k.img))
-            }
+            val database = FirebaseDatabase.getInstance()
+            val vt = SavedUserDatabaseManager(mContext)
+            val getLoginUser = SavedUserDatabaseDao().getData(vt)
 
+            for (k in getLoginUser) {
+                val userLogin = k.username + "Friends"
+                val saveFriends = database.getReference(userLogin)
+                saveFriends.push().setValue(UsersData(myHolder.username, myHolder.mail, myHolder.password, myHolder.img))
+
+                val selectedUser = myHolder.username + "Friends"
+                val selectedUserdb = database.getReference(selectedUser)
+                selectedUserdb.push().setValue(UsersData(k.username, k.mail, k.password, k.img))
+
+                val userLogin2 = k.username + "FriendsRequest"
+                val userLogin2db = database.getReference(userLogin2)
+
+                val selectedUserDB = myHolder.username + "FriendsRequest"
+                val selectedUserDB2 = database.getReference(selectedUserDB)
+
+
+                userLogin2db.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(ds: DataSnapshot) {
+                        for (p in ds.children) {
+                            val user = p.getValue(UsersData::class.java)
+                            if (user != null && user.username == myHolder.username) {
+                                userLogin2db.child(p.key!!).removeValue()
+
+
+                                getData.removeAt(position)
+                                notifyItemRemoved(position)
+                                notifyItemRangeChanged(position, getData.size)
+                                Snackbar.make(holder.itemView, "Arkadaşlık isteği kabul edildi", Snackbar.LENGTH_LONG).show()
+                                break
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+
+
+                selectedUserDB2.addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(ds: DataSnapshot) {
+                        for (p in ds.children) {
+                            val user = p.getValue(UsersData::class.java)
+                            if (user != null && user.username == k.username) {
+                                selectedUserDB2.child(p.key!!).removeValue()
+                                break
+                            }
+                        }
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {}
+                })
+            }
         }
+
 
     }
 
