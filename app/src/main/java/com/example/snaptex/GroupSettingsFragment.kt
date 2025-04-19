@@ -74,7 +74,7 @@ class GroupSettingsFragment : Fragment() {
 
 
 
-           Navigation.findNavController(it).navigate(R.id.action_groupSettingsFragment_to_groupChatPage)
+           Navigation.findNavController(it).navigate(R.id.action_groupSettingsFragment_to_homePage)
         }
 
         return binding.root

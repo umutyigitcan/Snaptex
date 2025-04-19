@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
 class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVAdapterData>):RecyclerView.Adapter<GroupListRVAdapter.myCardViewHolder>() {
@@ -28,6 +29,16 @@ class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVA
         val myHolder = getData[position]
 
         holder.groupName.text = myHolder.groupName
+
+        holder.groupSendMessage.setOnClickListener {
+
+            var vt=NowGroupDataSQLite(mContext)
+            NowGroupDataSQLiteDao().changeGroupId(vt,myHolder.groupId.toString())
+
+            Navigation.findNavController(it).navigate(R.id.action_homePage_to_groupChatPage)
+        }
+
+
 
 
     }

@@ -43,6 +43,9 @@
         <action
             android:id="@+id/action_homePage_to_groupsFragment"
             app:destination="@id/groupsFragment" />
+        <action
+            android:id="@+id/action_homePage_to_groupChatPage"
+            app:destination="@id/groupChatPage" />
     </fragment>
 
     <fragment
@@ -88,11 +91,8 @@
         android:label="fragment_group_settings"
         tools:layout="@layout/fragment_group_settings" >
         <action
-            android:id="@+id/action_groupSettingsFragment_to_groupChatPage"
-            app:destination="@id/groupChatPage" />
-        <action
-            android:id="@+id/action_groupSettingsFragment_to_groupChatPage2"
-            app:destination="@id/groupChatPage" />
+            android:id="@+id/action_groupSettingsFragment_to_homePage"
+            app:destination="@id/homePage" />
     </fragment>
     <fragment
         android:id="@+id/groupChatPage"
