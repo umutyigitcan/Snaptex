@@ -36,9 +36,18 @@
         app:layout_constraintBottom_toTopOf="@id/view"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@drawable/newuser"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/addGroup"
         android:layout_marginEnd="20dp"
         android:id="@+id/addFriend"/>
+    <Button
+        android:layout_width="40dp"
+        android:layout_height="42dp"
+        app:layout_constraintBottom_toTopOf="@id/view"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/groupadd"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="20dp"
+        android:id="@+id/addGroup"/>
 
 
     <View

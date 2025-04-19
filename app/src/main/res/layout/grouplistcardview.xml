@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/cardviewshape"
+    android:layout_marginTop="5dp"
+    android:layout_height="100dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:id="@+id/groupLogo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@drawable/imgshape"
+        android:src="@drawable/logo"
+        android:layout_marginLeft="20dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toTopOf="@id/groupLogo"
+        app:layout_constraintStart_toEndOf="@id/groupLogo"
+        android:text="groupName"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="2dp"
+        android:textSize="15dp"
+        android:id="@+id/groupName"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mesaj Göndermek İçin Tıklayınız"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:background="#223a4c"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="#51c1f5"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textSize="15dp"
+        android:layout_margin="10dp"
+        android:id="@+id/groupSendMessage"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

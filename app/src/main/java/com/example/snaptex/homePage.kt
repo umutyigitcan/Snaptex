@@ -24,9 +24,13 @@ class homePage : Fragment() {
         fragmentTitleList=ArrayList()
         fragmentList=ArrayList()
         fragmentList.add(PersonsPage())
-        fragmentList.add(GroupsFragment())
+        fragmentList.add(GroupListFragment())
         fragmentTitleList.add("Persons")
         fragmentTitleList.add("Groups")
+
+        binding.addGroup.setOnClickListener {
+            Navigation.findNavController(it).navigate(R.id.action_homePage_to_groupsFragment)
+        }
 
         binding.addFriend.setOnClickListener {
             Navigation.findNavController(it).navigate(R.id.action_homePage_to_addPersonPage)

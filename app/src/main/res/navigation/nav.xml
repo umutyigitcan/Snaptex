@@ -40,6 +40,9 @@
         <action
             android:id="@+id/action_homePage_to_addPersonPage"
             app:destination="@id/addPersonPage" />
+        <action
+            android:id="@+id/action_homePage_to_groupsFragment"
+            app:destination="@id/groupsFragment" />
     </fragment>
 
     <fragment
@@ -70,4 +73,35 @@
         android:id="@+id/addPersonPage"
         android:name="AddPersonPage"
         android:label="AddPersonPage" />
+    <fragment
+        android:id="@+id/groupsFragment"
+        android:name="com.example.snaptex.GroupsFragment"
+        android:label="fragment_groups"
+        tools:layout="@layout/fragment_groups" >
+        <action
+            android:id="@+id/action_groupsFragment_to_groupSettingsFragment"
+            app:destination="@id/groupSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupSettingsFragment"
+        android:name="com.example.snaptex.GroupSettingsFragment"
+        android:label="fragment_group_settings"
+        tools:layout="@layout/fragment_group_settings" >
+        <action
+            android:id="@+id/action_groupSettingsFragment_to_groupChatPage"
+            app:destination="@id/groupChatPage" />
+        <action
+            android:id="@+id/action_groupSettingsFragment_to_groupChatPage2"
+            app:destination="@id/groupChatPage" />
+    </fragment>
+    <fragment
+        android:id="@+id/groupChatPage"
+        android:name="com.example.snaptex.GroupChatPage"
+        android:label="fragment_group_chat_page"
+        tools:layout="@layout/fragment_group_chat_page" />
+    <fragment
+        android:id="@+id/groupListFragment"
+        android:name="com.example.snaptex.GroupListFragment"
+        android:label="fragment_group_list"
+        tools:layout="@layout/fragment_group_list" />
 </navigation>
