@@ -12,9 +12,11 @@ class GroupChatRVAdapter(var mContext:Context,var getData:ArrayList<GroupChatRVA
     inner class myCardViewHolder(view:View):RecyclerView.ViewHolder(view){
         var message:TextView
         var sender:TextView
+        var time:TextView
         init {
             message=view.findViewById(R.id.tv)
             sender=view.findViewById(R.id.userMessage)
+            time=view.findViewById(R.id.time)
         }
     }
 
@@ -26,6 +28,7 @@ class GroupChatRVAdapter(var mContext:Context,var getData:ArrayList<GroupChatRVA
         val myHolder = getData[position]
         holder.sender.text = myHolder.message
         holder.message.text = myHolder.sender
+        holder.time.text = myHolder.time
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myCardViewHolder {

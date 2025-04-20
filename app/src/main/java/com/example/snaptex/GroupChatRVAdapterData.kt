@@ -1,4 +1,7 @@
 package com.example.snaptex
 
-class GroupChatRVAdapterData(var message:String?=null,var sender:String?=null) {
-}
+data class GroupChatRVAdapterData(
+    val sender: String? = null,
+    val message: String? = null,
+    val time: String? = null
+)
