@@ -39,7 +39,6 @@ class PersonsPage : Fragment() {
                     for(k in ds.children){
                         var users=k.getValue(UsersData::class.java)
                         if(users!=null){
-
                             dataList.add(RVAdapterData(users.username.toString(),users.mail.toString(),users.password.toString(),users.img!!))
                             adapter.notifyDataSetChanged()
                         }

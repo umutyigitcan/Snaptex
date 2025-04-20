@@ -5,5 +5,6 @@ data class SendedMessageData(
     var mail: String = "",
     var password: String = "",
     var img: Int = 0,
-    var message: String = ""
+    var message: String = "",
+    var time:String=""
 )

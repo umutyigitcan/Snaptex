@@ -59,4 +59,15 @@
         android:textColor="@color/black"
         android:id="@+id/lastMessage"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/username"
+        android:layout_marginEnd="10dp"
+        android:text="00:00"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:id="@+id/time"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

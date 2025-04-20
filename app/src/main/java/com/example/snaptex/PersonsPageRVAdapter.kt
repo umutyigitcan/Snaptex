@@ -13,22 +13,26 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import java.text.SimpleDateFormat
+import java.util.*
 
-class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterData>):RecyclerView.Adapter<PersonsPageRVAdapter.myCardViewHolder>() {
+class PersonsPageRVAdapter(var mContext: Context, var getData: ArrayList<RVAdapterData>) : RecyclerView.Adapter<PersonsPageRVAdapter.myCardViewHolder>() {
 
-    inner class myCardViewHolder(view:View):RecyclerView.ViewHolder(view){
-        var userimg:ImageView
-        var Username:TextView
-        var sendMessage:TextView
-        var cl:ConstraintLayout
-        var lastMessage:TextView
+    inner class myCardViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        var userimg: ImageView
+        var Username: TextView
+        var sendMessage: TextView
+        var cl: ConstraintLayout
+        var lastMessage: TextView
+        var time: TextView
+
         init {
-            userimg=view.findViewById(R.id.userimggg)
-            Username=view.findViewById(R.id.username)
-            sendMessage=view.findViewById(R.id.sendMessage)
-            cl=view.findViewById(R.id.cl)
-            lastMessage=view.findViewById(R.id.lastMessage)
-
+            userimg = view.findViewById(R.id.userimggg)
+            Username = view.findViewById(R.id.username)
+            sendMessage = view.findViewById(R.id.sendMessage)
+            cl = view.findViewById(R.id.cl)
+            lastMessage = view.findViewById(R.id.lastMessage)
+            time = view.findViewById(R.id.time)
         }
     }
 
@@ -37,38 +41,51 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myCardViewHolder {
-        var layout=LayoutInflater.from(mContext).inflate(R.layout.messagepersongpage,parent,false)
+        val layout = LayoutInflater.from(mContext).inflate(R.layout.messagepersongpage, parent, false)
         return myCardViewHolder(layout)
     }
 
     override fun onBindViewHolder(holder: myCardViewHolder, position: Int) {
-        var myHolder=getData[position]
-        holder.Username.text=myHolder.mail
-        var database=FirebaseDatabase.getInstance()
-        var vt=SavedUserDatabaseManager(mContext)
-        var getLoginUserDB=SavedUserDatabaseDao().getData(vt)
-        var getLoginUser=""
-        for(k in getLoginUserDB){
-            getLoginUser=k.username
+        val myHolder = getData[position]
+        holder.Username.text = myHolder.mail
+
+        val database = FirebaseDatabase.getInstance()
+        val vt = SavedUserDatabaseManager(mContext)
+        val getLoginUserDB = SavedUserDatabaseDao().getData(vt)
+        var getLoginUser = ""
+        for (k in getLoginUserDB) {
+            getLoginUser = k.username
         }
-        var lastMessageDB= listOf(getLoginUser,myHolder.mail).sorted().joinToString ("_")
-        var lastMessage=database.getReference(lastMessageDB)
 
-        lastMessage.addValueEventListener(object :ValueEventListener{
+        val lastMessageDB = listOf(getLoginUser, myHolder.mail).sorted().joinToString("_")
+        val lastMessage = database.getReference(lastMessageDB)
+
+        lastMessage.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(ds: DataSnapshot) {
-                for(p in ds.children){
+                for (p in ds.children) {
+                    val lastMessage = p.getValue(SendedMessageData::class.java)
+                    if (lastMessage != null) {
 
-                    var lastMessage=p.getValue(SendedMessageData::class.java)
-                    if(lastMessage!=null){
-                        if(lastMessage.message.length>30) {
+                        if (lastMessage.message.length > 30) {
                             holder.lastMessage.text = lastMessage.message.take(30).split("\n").lastOrNull().orEmpty() + "..."
-                        }else{
-                            holder.lastMessage.text=lastMessage.message.split("\n").lastOrNull().orEmpty()
+                        } else {
+                            holder.lastMessage.text = lastMessage.message.split("\n").lastOrNull().orEmpty()
                         }
 
+
+                        val timestamp = p.child("timestamp").getValue(Long::class.java)
+                        val formattedTime = if (timestamp != null) {
+                            val date = Date(timestamp)
+                            val format = SimpleDateFormat("HH:mm", Locale.getDefault())
+                            format.format(date)
+                        } else {
+                            "Unknown Time"
+                        }
+
+
+                        holder.time.text = formattedTime
                     }
                 }
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -86,20 +103,9 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
                 SelectedUserChatDao().changeData(vt2, userLogin, selectedUser)
             }
 
-
             val navController = Navigation.findNavController(it)
             navController.navigate(R.id.action_global_chatPage)
             return@setOnClickListener
         }
-
-
-
-
-
     }
-
-
-
-
-
 }
