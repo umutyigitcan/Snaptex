@@ -68,7 +68,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.1">
+        app:layout_constraintHeight_percent="0.075">
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"

@@ -37,6 +37,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:background="#223a4c"
+        android:visibility="invisible"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         android:textColor="#51c1f5"

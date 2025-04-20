@@ -16,5 +16,5 @@
         android:id="@+id/rv"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_margin="20dp"/>
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

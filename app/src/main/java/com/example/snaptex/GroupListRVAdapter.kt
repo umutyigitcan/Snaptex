@@ -18,10 +18,12 @@ class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVA
         var groupSendMessage:TextView
         var cl:ConstraintLayout
         init {
+
             cl=view.findViewById(R.id.cl)
             groupLogo=view.findViewById(R.id.groupLogo)
             groupName=view.findViewById(R.id.groupName)
             groupSendMessage=view.findViewById(R.id.groupSendMessage)
+
         }
 
     }
