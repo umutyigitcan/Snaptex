@@ -9,6 +9,10 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVAdapterData>):RecyclerView.Adapter<GroupListRVAdapter.myCardViewHolder>() {
 
@@ -17,12 +21,14 @@ class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVA
         var groupName:TextView
         var groupSendMessage:TextView
         var cl:ConstraintLayout
+        var lastMessage:TextView
         init {
 
             cl=view.findViewById(R.id.cl)
             groupLogo=view.findViewById(R.id.groupLogo)
             groupName=view.findViewById(R.id.groupName)
             groupSendMessage=view.findViewById(R.id.groupSendMessage)
+            lastMessage=view.findViewById(R.id.lastMessage)
 
         }
 
@@ -34,6 +40,32 @@ class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVA
         val myHolder = getData[position]
 
         holder.groupName.text = myHolder.groupName
+
+        var database=FirebaseDatabase.getInstance()
+        var groupRef=database.getReference("Groups")
+
+        groupRef.addValueEventListener(object :ValueEventListener{
+            override fun onDataChange(ds: DataSnapshot) {
+                for(p in ds.children){
+                    val groupData=p.getValue(GroupDataClass::class.java)
+                    if (groupData!=null){
+                        if(groupData.groupId==myHolder.groupId){
+                            var data=groupData.groupMessage
+                            if(data!=null){
+                                for((sender,message) in data){
+                                    holder.lastMessage.text=message.message
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+        })
 
         holder.cl.setOnClickListener {
 
