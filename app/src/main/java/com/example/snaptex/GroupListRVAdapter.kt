@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 
@@ -15,7 +16,9 @@ class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVA
         var groupLogo:ImageView
         var groupName:TextView
         var groupSendMessage:TextView
+        var cl:ConstraintLayout
         init {
+            cl=view.findViewById(R.id.cl)
             groupLogo=view.findViewById(R.id.groupLogo)
             groupName=view.findViewById(R.id.groupName)
             groupSendMessage=view.findViewById(R.id.groupSendMessage)
@@ -30,7 +33,7 @@ class GroupListRVAdapter(var mContext:Context,var getData:ArrayList<GroupListRVA
 
         holder.groupName.text = myHolder.groupName
 
-        holder.groupSendMessage.setOnClickListener {
+        holder.cl.setOnClickListener {
 
             var vt=NowGroupDataSQLite(mContext)
             NowGroupDataSQLiteDao().changeGroupId(vt,myHolder.groupId.toString())

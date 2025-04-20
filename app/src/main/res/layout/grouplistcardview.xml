@@ -3,12 +3,13 @@
     android:layout_width="match_parent"
     android:background="@drawable/cardviewshape"
     android:layout_marginTop="5dp"
-    android:layout_height="100dp"
+    android:layout_height="80dp"
+    android:id="@+id/cl"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:id="@+id/groupLogo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -20,7 +21,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         app:layout_constraintTop_toTopOf="@id/groupLogo"
         app:layout_constraintStart_toEndOf="@id/groupLogo"
         android:text="groupName"

@@ -25,7 +25,7 @@ class homePage : Fragment() {
         fragmentList=ArrayList()
         fragmentList.add(PersonsPage())
         fragmentList.add(GroupListFragment())
-        fragmentTitleList.add("Persons")
+        fragmentTitleList.add("Friends")
         fragmentTitleList.add("Groups")
 
         binding.addGroup.setOnClickListener {

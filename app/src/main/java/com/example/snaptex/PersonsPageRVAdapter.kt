@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.FirebaseDatabase
@@ -16,10 +17,12 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
         var userimg:ImageView
         var Username:TextView
         var sendMessage:TextView
+        var cl:ConstraintLayout
         init {
             userimg=view.findViewById(R.id.userimggg)
             Username=view.findViewById(R.id.username)
             sendMessage=view.findViewById(R.id.sendMessage)
+            cl=view.findViewById(R.id.cl)
 
         }
     }
@@ -37,7 +40,7 @@ class PersonsPageRVAdapter(var mContext:Context,var getData:ArrayList<RVAdapterD
         var myHolder=getData[position]
         holder.Username.text=myHolder.mail
 
-        holder.sendMessage.setOnClickListener {
+        holder.cl.setOnClickListener {
 
             var vt=SelectedUserChatSQLite(mContext)
             var getLoginUser=SelectedUserChatDao().getData(vt)
