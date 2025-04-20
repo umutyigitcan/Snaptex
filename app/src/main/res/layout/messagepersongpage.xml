@@ -49,4 +49,14 @@
         android:layout_margin="10dp"
         android:id="@+id/sendMessage"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/userimggg"
+        app:layout_constraintStart_toStartOf="@id/username"
+        android:text=""
+        android:visibility="visible"
+        android:textColor="@color/black"
+        android:id="@+id/lastMessage"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

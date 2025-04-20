@@ -71,6 +71,10 @@ class FirstPage : Fragment() {
             })
         }
 
+
+
         return binding.root
     }
+
+
 }
