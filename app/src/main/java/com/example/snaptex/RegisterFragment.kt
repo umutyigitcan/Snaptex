@@ -25,38 +25,45 @@ class RegisterFragment : Fragment() {
             val mail = binding.mailinput.text.toString().trim()
             val password = binding.passwordinput.text.toString().trim()
 
+            var isValid = true
+
+            // Temizle önceki hataları
+            binding.usernameinput.error = null
+            binding.mailinput.error = null
+            binding.passwordinput.error = null
 
             if (username.isEmpty()) {
-                Snackbar.make(requireView(), "Kullanıcı adı boş olamaz", Snackbar.LENGTH_LONG).show()
-                return@setOnClickListener
+                binding.usernameinput.error = "Kullanıcı adı boş olamaz"
+                isValid = false
+            } else if (username.length < 8) {
+                binding.usernameinput.error = "Kullanıcı adınız en az 8 karakter olmalıdır"
+                isValid = false
             }
+
             if (mail.isEmpty()) {
-                Snackbar.make(requireView(), "E-posta boş olamaz", Snackbar.LENGTH_LONG).show()
-                return@setOnClickListener
+                binding.mailinput.error = "E-posta boş olamaz"
+                isValid = false
+            } else {
+                val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}"
+                if (!mail.matches(emailPattern.toRegex())) {
+                    binding.mailinput.error = "Geçerli bir e-posta adresi giriniz"
+                    isValid = false
+                }
             }
+
             if (password.isEmpty()) {
-                Snackbar.make(requireView(), "Şifre boş olamaz", Snackbar.LENGTH_LONG).show()
+                binding.passwordinput.error = "Şifre boş olamaz"
+                isValid = false
+            } else if (password.length < 8) {
+                binding.passwordinput.error = "Şifreniz en az 8 karakter olmalıdır"
+                isValid = false
+            }
+
+            if (!isValid) {
                 return@setOnClickListener
             }
 
-
-            if (username.length < 8) {
-                Snackbar.make(requireView(), "Kullanıcı adınız en az 8 karakter olmalıdır", Snackbar.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-            if (password.length < 8) {
-                Snackbar.make(requireView(), "Şifreniz en az 8 karakter olmalıdır", Snackbar.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-
-            val emailPattern = "[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4}"
-            if (!mail.matches(emailPattern.toRegex())) {
-                Snackbar.make(requireView(), "Geçerli bir e-posta adresi giriniz", Snackbar.LENGTH_LONG).show()
-                return@setOnClickListener
-            }
-
-
+            
             val database = FirebaseDatabase.getInstance()
             val usersRef = database.getReference("Users")
 
@@ -73,20 +80,25 @@ class RegisterFragment : Fragment() {
                         }
                     }
 
+                    var dbCheckValid = true
+
                     if (usernameExists) {
-                        Snackbar.make(requireView(), "Bu kullanıcı adı kullanılmaktadır", Snackbar.LENGTH_LONG).show()
-                        return
+                        binding.usernameinput.error = "Bu kullanıcı adı kullanılmaktadır"
+                        dbCheckValid = false
                     }
                     if (mailExists) {
-                        Snackbar.make(requireView(), "Bu mail kullanılmaktadır", Snackbar.LENGTH_LONG).show()
-                        return
+                        binding.mailinput.error = "Bu mail kullanılmaktadır"
+                        dbCheckValid = false
                     }
+
+                    if (!dbCheckValid) return
 
 
                     val vt = RegisterDatabaseManager(requireContext())
                     RegisterDatabaseDao().userChange(vt, username, mail, password)
 
-                    Navigation.findNavController(binding.root).navigate(R.id.action_registerFragment_to_secondPage)
+                    Navigation.findNavController(binding.root)
+                        .navigate(R.id.action_registerFragment_to_secondPage)
                 }
 
                 override fun onCancelled(error: DatabaseError) {
@@ -94,6 +106,7 @@ class RegisterFragment : Fragment() {
                 }
             })
         }
+
 
 
 

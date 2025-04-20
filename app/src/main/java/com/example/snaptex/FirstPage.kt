@@ -33,10 +33,18 @@ class FirstPage : Fragment() {
             val email = binding.mailinput.text.toString().trim()
             val password = binding.passwordinput.text.toString().trim()
 
-            if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(requireContext(), "Lütfen e-posta ve şifre girin!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
+            var isValid=true
+
+            if (email.isEmpty()) {
+                binding.mailinput.error = "E-posta boş olamaz"
+                isValid=false
             }
+            if (password.isEmpty()) {
+                binding.passwordinput.error = "Şifre boş olamaz"
+                isValid=false
+            }
+
+            if(!isValid) return@setOnClickListener
 
             userRef.addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(ds: DataSnapshot) {
