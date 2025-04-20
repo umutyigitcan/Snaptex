@@ -57,6 +57,16 @@
         android:textColor="@color/black"
         android:id="@+id/lastMessage"/>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/groupName"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:id="@+id/time"
+        android:text="00:00"
+        android:layout_marginEnd="10dp"
+        android:textColor="@color/black"/>
+
 
 
 

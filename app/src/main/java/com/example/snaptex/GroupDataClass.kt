@@ -14,5 +14,6 @@ data class GroupDataClass(
 
 data class MessageDataClass(
     var sender: String = "",
-    var message: String = ""
+    var message: String = "",
+    val timestamp: Long = 0L
 )

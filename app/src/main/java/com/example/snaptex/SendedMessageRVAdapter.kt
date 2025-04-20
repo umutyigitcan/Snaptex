@@ -12,9 +12,11 @@ class SendedMessageRVAdapter(var mContext:Context,var getData:ArrayList<SendedMe
     inner class myCardViewHolder(view:View):RecyclerView.ViewHolder(view){
         var tv:TextView
         var userMessage:TextView
+        var time:TextView
         init {
             tv=view.findViewById(R.id.tv)
             userMessage=view.findViewById(R.id.userMessage)
+            time=view.findViewById(R.id.time)
         }
     }
 
@@ -26,6 +28,7 @@ class SendedMessageRVAdapter(var mContext:Context,var getData:ArrayList<SendedMe
         var myHolder=getData[position]
         holder.tv.text=myHolder.username
         holder.userMessage.text=myHolder.message
+        holder.time.text=myHolder.time
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myCardViewHolder {
