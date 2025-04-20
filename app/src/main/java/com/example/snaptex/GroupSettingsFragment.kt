@@ -22,6 +22,13 @@ class GroupSettingsFragment : Fragment() {
 
         binding.button.setOnClickListener {
 
+
+            if(binding.input.text.isEmpty()){
+                binding.input.error="Bu alan boş bırakılamaz"
+                return@setOnClickListener
+            }
+
+
             var vt=GroupDataClassSQLite(requireContext())
             GroupDataClassSQLiteDao().insertGroupNameAndGroupLogo(vt,binding.input.text.toString(),1)
 
