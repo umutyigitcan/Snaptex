@@ -29,6 +29,8 @@ class GroupChatRVAdapter(var mContext:Context,var getData:ArrayList<GroupChatRVA
         holder.sender.text = myHolder.message
         holder.message.text = myHolder.sender
         holder.time.text = myHolder.time
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myCardViewHolder {

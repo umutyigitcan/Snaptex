@@ -57,7 +57,7 @@ class GroupListRVAdapter(var mContext: Context, var getData: ArrayList<GroupList
                     if (groupData != null && groupData.groupId == myHolder.groupId) {
                         val data = groupData.groupMessage
                         if (data != null) {
-                            // Son mesajı ve timestamp değerini çekiyoruz
+
                             var lastMessageText = "Henüz mesaj yok"
                             var lastTimestamp: Long = 0
 
@@ -70,7 +70,7 @@ class GroupListRVAdapter(var mContext: Context, var getData: ArrayList<GroupList
 
                             holder.lastMessage.text = lastMessageText
 
-                            // Zamanı formatlamak için
+
                             val formattedTime = formatTimestamp(lastTimestamp)
                             holder.time.text = formattedTime
                         }
@@ -79,7 +79,7 @@ class GroupListRVAdapter(var mContext: Context, var getData: ArrayList<GroupList
             }
 
             override fun onCancelled(error: DatabaseError) {
-                // Hata durumu
+
             }
         })
 
